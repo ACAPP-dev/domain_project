@@ -1,5 +1,7 @@
 class DomainSearch::CLI
 
+  attr_accessor :domain
+
   def call
     puts "Welcome to Domain Search using GoDaddy API!"
     main_menu
@@ -62,6 +64,9 @@ class DomainSearch::CLI
     Available: Yes
     Price: $50.00
     DOC
+    domain_scrape = APIScrape.new(name)
+    binding.pry
+    #@domain = DomainSearch::Domain.all
     available = false
     if available
       main_menu
