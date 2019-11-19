@@ -16,10 +16,10 @@ Shows Menu Options
 
   - Shows info about domain, available, price if available.
 
-  2. Search for available domaina based on keyword
+2. Search for available domains based on keyword
    > Type category name
 
    - Shows list of possible domains for sale based on input.
    - Prompts user: choose number of domain to view or 'exit' to return to search.  Press enter to view additional options.
 
-    3. Possible enhancement - view websites for sale on Flippa.com for these domains (or a specific domain).
+3. Possible enhancement - view websites for sale on Flippa.com for these domains (or a specific domain).
