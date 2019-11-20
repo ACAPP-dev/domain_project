@@ -63,23 +63,20 @@ class DomainSearch::CLI
     domain_scrape = APIScrape.get_domain(name)
     domain_return = DomainSearch::Domain.create_domain_object(domain_scrape)
 
-
     puts <<-DOC
     Domain Search Results:
     Domain Name: #{domain_return.name}
-    Available for Purchase: #{domain_return.available}
-    Is GoDaddy Confident of Status?: #{domain_return.confidence}
+    Available for Purchase? #{domain_return.available}
+    Is GoDaddy Confident of Status? #{domain_return.confidence}
     Price: #{domain_return.price}
     DOC
     #@domain = DomainSearch::Domain.all
     available = false
-    if available
+    if domain_return.available
       main_menu
     else
       puts "Your requested domain is not available.  Here is a list of related domains for sale:"
       search_keyword(name)
-
-    #Need to add list of similar domains if not available
     end
   end
 
@@ -88,6 +85,8 @@ class DomainSearch::CLI
     domain_list_scrape = APIScrape.get_domain_list(keyword)
     domain_list_array = DomainSearch::DomainList.create_domain_list(domain_list_scrape)
     domain_list_hash = APIScrape.get_domain_list_info(domain_list_array)
+    binding.pry
+    domain_list_info_objects = DomainSearch::DomainList.add_domain_list_details(domain_list_hash)
     puts "Domain listing based on keyword: #{keyword}"
     if domain_list_array.length > 10
       while i < 10
