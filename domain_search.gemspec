@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "domain_project/version"
+require "domain_search/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "domain_project"
-  spec.version       = DomainProject::VERSION
+  spec.name          = "domain_search"
+  spec.version       = DomainSearch::VERSION
   spec.authors       = ["'Andrew Capp'"]
   spec.email         = ["'acapp909@gmail.com'"]
 

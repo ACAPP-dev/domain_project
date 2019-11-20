@@ -59,13 +59,18 @@ class DomainSearch::CLI
   end
 
   def search_specific(name)
+
+    domain_scrape = APIScrape.get_domain(name)
+    domain_return = DomainSearch::Domain.create_domain_object(domain_scrape)
+
+
     puts <<-DOC
-    Domain name
-    Available: Yes
-    Price: $50.00
+    Domain Search Results:
+    Domain Name: #{domain_return.name}
+    Available for Purchase: #{domain_return.available}
+    Is GoDaddy Confident of Status?: #{domain_return.confidence}
+    Price: #{domain_return.price}
     DOC
-    domain_scrape = APIScrape.new(name)
-    binding.pry
     #@domain = DomainSearch::Domain.all
     available = false
     if available
@@ -73,6 +78,7 @@ class DomainSearch::CLI
     else
       puts "Your requested domain is not available.  Here is a list of related domains for sale:"
       search_keyword(name)
+
     #Need to add list of similar domains if not available
     end
   end
