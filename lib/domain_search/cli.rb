@@ -84,11 +84,34 @@ class DomainSearch::CLI
   end
 
   def search_keyword(keyword)
-    puts <<-DOC
-    1. xxxx.xxx
-    2. xxxx.xxx
-    3. xxxx.xxx
-    DOC
+    i = 0
+    domain_list_scrape = APIScrape.get_domain_list(keyword)
+    domain_list_array = DomainSearch::DomainList.create_domain_list(domain_list_scrape)
+    binding.pry
+    puts "Domain listing based on keyword: #{keyword}"
+    if domain_list_array.length > 10
+      while i < 10
+        #puts first 10 Results
+        puts "#{i+1}. #{domain_list_array[i].name}"
+        i += 1
+      end
+    else
+      while i < domain_list_array.length
+        puts "#{i+1}. #{domain_list_array[i].name}"
+        i += 1
+      end
+    end
+
+
+
+    #domain_list_array.each do |domain_item|
+    #  puts
+    #end
+    #puts <<-DOC
+    #1. xxxx.xxx
+    #2. xxxx.xxx
+    #3. xxxx.xxx
+    #DOC
     second_menu(keyword)
   end
 
