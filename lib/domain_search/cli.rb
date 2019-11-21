@@ -85,7 +85,6 @@ class DomainSearch::CLI
     domain_list_scrape = APIScrape.get_domain_list(keyword)
     domain_list_array = DomainSearch::DomainList.create_domain_list(domain_list_scrape)
     domain_list_hash = APIScrape.get_domain_list_info(domain_list_array)
-    binding.pry
     domain_list_info_objects = DomainSearch::DomainList.add_domain_list_details(domain_list_hash)
     puts "Domain listing based on keyword: #{keyword}"
     if domain_list_array.length > 10

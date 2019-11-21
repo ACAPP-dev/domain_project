@@ -18,6 +18,6 @@ class APIScrape
     domain_list_array.each do |object|
       domains << object.name
     end
-    response = HTTParty.post(url, :headers => {"Authorization" => "sso-key 3mM44UaChQSbDX_Cz2Z8oBLkQgCGLqvmQHTAN:Jb9VdYd35vbRNeqVyFygk5", "Content-Type" => "application/json"}, :body => domains.to_json, :debug_output => $stdout)
+    response = HTTParty.post(url, :headers => {"Authorization" => "sso-key 3mM44UaChQSbDX_Cz2Z8oBLkQgCGLqvmQHTAN:Jb9VdYd35vbRNeqVyFygk5", "Content-Type" => "application/json"}, :body => domains.to_json)
   end
 end

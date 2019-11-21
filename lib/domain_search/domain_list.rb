@@ -16,8 +16,14 @@ class DomainSearch::DomainList
   end
 
   def self.add_domain_list_details(domain_info_hash)
-    
-
+    domain_info_hash["domains"].each do | domain|
+      current_instance = DomainSearch::DomainList.all.detect{|object| object.name == domain["domain"]}
+      if current_instance
+        current_instance.available = domain["available"]
+        current_instance.confidence = domain["definitive"]
+        current_instance.price = domain["price"]
+      end
+    end
   end
 
   def self.all
