@@ -34,23 +34,16 @@ class DomainSearch::CLI
 
   def second_menu(name=nil)
     puts <<-DOC
-      Choose number of domain to view:
+      Choose number of domain to view more detail:
 
       E or exit to go back to main menu
     DOC
-    #will need way to choose multiple options from array or hash
     input = gets.strip.downcase
     #binding.pry
-    if input == "1" || input == "one"
-      search_specific(name)
-    elsif input == "n"|| input == "next"
-      puts "Showing up to next 10 options"
-      second_menu(name)
-    elsif input == "b" || input == "back"
-      puts "Showing previous 10 options"
-      second_menu(name)
-    elsif input == "e" || input == "exit"
-      main_menu
+    if input == "e" || input == "exit"
+      main menu
+    elsif input.to_i >= 1 && input.to_i < DomainSearch::DomainList.all.length
+      display_search_specific_results(DomainSearch::DomainList.all[input.to_i-1])
     else
       puts "Please enter a valid menu option:"
       second_menu(name)
@@ -58,25 +51,9 @@ class DomainSearch::CLI
   end
 
   def search_specific(name)
-
     domain_scrape = APIScrape.get_domain(name)
     domain_return = DomainSearch::Domain.create_domain_object(domain_scrape)
-
-    puts <<-DOC
-    Domain Search Results:
-    Domain Name: #{domain_return.name}
-    Available for Purchase? #{domain_return.available}
-    Is GoDaddy Confident of Status? #{domain_return.confidence}
-    Price: #{domain_return.price}
-    DOC
-    #@domain = DomainSearch::Domain.all
-    available = false
-    if domain_return.available
-      main_menu
-    else
-      puts "Your requested domain is not available.  Here is a list of related domains for sale:"
-      search_keyword(name)
-    end
+    display_search_specific_results(domain_return)
   end
 
   def search_keyword(keyword)
@@ -86,7 +63,22 @@ class DomainSearch::CLI
     DomainSearch::DomainList.add_domain_list_details(domain_list_hash)
     puts "Domain listing based on keyword: #{keyword}"
     display_search_keyword_results
+  end
 
+  def display_search_specific_results(object)
+    puts <<-DOC
+    Domain Search Results:
+    Domain Name: #{object.name}
+    Available for Purchase? #{object.available}
+    Is GoDaddy Confident of Status? #{object.confidence}
+    Price: #{object.price}
+    DOC
+    if object.available
+      main_menu
+    else
+      puts "Your requested domain is not available.  Here is a list of related domains for sale:"
+      search_keyword(object.name)
+    end
   end
 
   def display_search_keyword_results
