@@ -34,6 +34,4 @@ class DomainSearch::DomainList
   def self.all_destroy
     @@all.clear
   end
-
-
 end
