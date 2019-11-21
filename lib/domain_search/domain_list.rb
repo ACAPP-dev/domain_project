@@ -24,6 +24,7 @@ class DomainSearch::DomainList
         current_instance.price = domain["price"]
       end
     end
+    DomainSearch::DomainList.all
   end
 
   def self.all

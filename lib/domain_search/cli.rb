@@ -35,8 +35,7 @@ class DomainSearch::CLI
   def second_menu(name=nil)
     puts <<-DOC
       Choose number of domain to view:
-      N or next to show next 10 options
-      B or back to show previous 10 options
+
       E or exit to go back to main menu
     DOC
     #will need way to choose multiple options from array or hash
@@ -81,36 +80,21 @@ class DomainSearch::CLI
   end
 
   def search_keyword(keyword)
-    i = 0
     domain_list_scrape = APIScrape.get_domain_list(keyword)
     domain_list_array = DomainSearch::DomainList.create_domain_list(domain_list_scrape)
     domain_list_hash = APIScrape.get_domain_list_info(domain_list_array)
-    domain_list_info_objects = DomainSearch::DomainList.add_domain_list_details(domain_list_hash)
+    DomainSearch::DomainList.add_domain_list_details(domain_list_hash)
     puts "Domain listing based on keyword: #{keyword}"
-    if domain_list_array.length > 10
-      while i < 10
-        #puts first 10 Results
-        puts "#{i+1}. #{domain_list_array[i].name}"
-        i += 1
-      end
-    else
-      while i < domain_list_array.length
-        puts "#{i+1}. #{domain_list_array[i].name}"
-        i += 1
-      end
-    end
+    display_search_keyword_results
 
-
-
-    #domain_list_array.each do |domain_item|
-    #  puts
-    #end
-    #puts <<-DOC
-    #1. xxxx.xxx
-    #2. xxxx.xxx
-    #3. xxxx.xxx
-    #DOC
-    second_menu(keyword)
   end
 
+  def display_search_keyword_results
+    display_list = DomainSearch::DomainList.all
+    #binding.pry
+    display_list.each.with_index(1) do |object, index|
+      puts "#{index}. #{object.name}      #{object.price}"
+    end
+    second_menu
+  end
 end
