@@ -15,7 +15,6 @@ class DomainSearch::CLI
     Q or q to quit program
     DOC
     input = gets.strip.downcase
-    #binding.pry
     if input == "1" || input == "one"
       puts "Enter domain for search:"
       search_input = gets.strip.downcase
@@ -52,9 +51,9 @@ class DomainSearch::CLI
 
   def third_menu
     puts <<-DOC
-      B or back to return to the list of domains
-      E or exit to go back to main menu
-      Q or quit to exit the program
+      B or Back to return to the list of domains
+      E or Exit to go back to main menu
+      Q or Quit to exit the program
     DOC
     input = gets.strip.downcase
     if input == "b" || input == "back"
@@ -66,7 +65,7 @@ class DomainSearch::CLI
       puts "Goodbye!"
     else
       puts "Please enter a valid menu option:"
-      second_menu(name)
+      second_menu
     end
   end
 
@@ -96,7 +95,7 @@ class DomainSearch::CLI
     if object.available == "true"
       main_menu
     else
-      puts "Your requested domain is not available.  Here is a list of related domains for sale:"
+      puts "Your requested domain is not available.  Here is a list of related domains:"
       search_keyword(object.name)
     end
   end
@@ -118,7 +117,7 @@ class DomainSearch::CLI
     Is GoDaddy Confident of Status? #{object.confidence}
     Price: #{object.price}
     DOC
-    if object.available == "true"
+    if object.available
       puts "This domain is available for purchase!"
       third_menu
     else
