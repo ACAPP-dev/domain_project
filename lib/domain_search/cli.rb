@@ -12,7 +12,7 @@ class DomainSearch::CLI
     Menu Options
     1. Search for status of specific domain
     2. Search for available domains based on keyword
-    Q or q to quit program
+    Q or Quit to exit the program
     DOC
     input = gets.strip.downcase
     if input == "1" || input == "one"
@@ -21,8 +21,6 @@ class DomainSearch::CLI
     elsif input == "2" || input == "two"
       puts "Enter keyword for search:"
       search_verification(input)
-      #keyword_input = gets.strip
-      #search_keyword(keyword_input)
     elsif input == "q" || input == "quit"
       puts "Goodbye!"
     else
@@ -34,10 +32,9 @@ class DomainSearch::CLI
   def second_menu(name=nil)
     puts <<-DOC
       Choose number of domain to view more detail:
-      E or exit to go back to main menu
+      E or Exit to go back to main menu
     DOC
     input = gets.strip.downcase
-    #binding.pry
     if input == "e" || input == "exit"
       DomainSearch::DomainList.all_destroy
       main_menu
@@ -75,7 +72,7 @@ class DomainSearch::CLI
       search_specific(search_input) if input == "1" || input == "one"
       search_keyword(search_input) if input == "2" || input == "two"
     else
-      puts "Please enter valid search text (1-20 word characters plus optional "." plus optional 0-12 for top level domain):"
+      puts "Please enter valid search text (1-20 word characters plus optional '.' plus optional 0-12 for top level domain):"
       search_verification(input)
     end
   end
@@ -136,7 +133,4 @@ class DomainSearch::CLI
       third_menu
     end
   end
-
-
-
 end
