@@ -17,10 +17,10 @@ class DomainSearch::CLI
     input = gets.strip.downcase
     if input == "1" || input == "one"
       puts "Enter domain for search:"
-      search_verification(input)
+      domain_search_verification
     elsif input == "2" || input == "two"
       puts "Enter keyword for search:"
-      search_verification(input)
+      search_keyword_verification
     elsif input == "q" || input == "quit"
       puts "Goodbye!"
     else
@@ -72,7 +72,7 @@ class DomainSearch::CLI
       search_specific(search_input)
     else
       puts "Please enter valid search text (1-20 word characters plus '.' plus 0-12 word characters for top level domain):"
-      domain_search_verification(input)
+      domain_search_verification
     end
   end
 
@@ -87,9 +87,14 @@ class DomainSearch::CLI
   end
 
   def search_specific(name)
-    domain_scrape = APIScrape.get_domain(name)
-    domain_return = DomainSearch::Domain.create_domain_object(domain_scrape)
-    display_search_specific_results(domain_return)
+    api_return = APIScrape.get_domain(name)
+    if api_return.key?("error")
+      puts "No domain was found based on your search term.  Please try a different search term."
+      domain_search_verification
+    else
+      domain_return = DomainSearch::Domain.create_domain_object(api_return)
+      display_search_specific_results(domain_return)
+    end
   end
 
   def search_keyword(keyword)
@@ -119,7 +124,6 @@ class DomainSearch::CLI
 
   def display_search_keyword_results
     display_list = DomainSearch::DomainList.all
-    #binding.pry
     display_list.each.with_index(1) do |object, index|
       puts "#{index}. #{object.name}      #{object.price}"
     end
