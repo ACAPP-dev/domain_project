@@ -9,6 +9,7 @@ class DomainSearch::Domain
   end
 
   def self.create_domain_object(object)
+    #call API from here instead of from CLI
     domain_object = object["DomainAvailableResponse"]
     domain_object_instance = DomainSearch::Domain.new(domain_object["Domain"],
         domain_object["Available"], domain_object["Definitive"], domain_object["Price"])
