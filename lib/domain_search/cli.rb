@@ -17,12 +17,12 @@ class DomainSearch::CLI
     input = gets.strip.downcase
     if input == "1" || input == "one"
       puts "Enter domain for search:"
-      search_input = gets.strip.downcase
-      search_specific(search_input)
+      search_verification(input)
     elsif input == "2" || input == "two"
       puts "Enter keyword for search:"
-      keyword_input = gets.strip
-      search_keyword(keyword_input)
+      search_verification(input)
+      #keyword_input = gets.strip
+      #search_keyword(keyword_input)
     elsif input == "q" || input == "quit"
       puts "Goodbye!"
     else
@@ -66,6 +66,17 @@ class DomainSearch::CLI
     else
       puts "Please enter a valid menu option:"
       second_menu
+    end
+  end
+
+  def search_verification(input)
+    search_input = gets.strip.downcase
+    if search_input.match?(/^[a-zA-Z]{1,20}\.?[a-zA-Z]{0,12}$/)
+      search_specific(search_input) if input == "1" || input == "one"
+      search_keyword(search_input) if input == "2" || input == "two"
+    else
+      puts "Please enter valid search text (1-20 word characters plus optional "." plus optional 0-12 for top level domain):"
+      search_verification(input)
     end
   end
 
