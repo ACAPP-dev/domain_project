@@ -8,11 +8,16 @@ class DomainSearch::Domain
     @@all << self
   end
 
-  def self.create_domain_object(object)
-    #call API from here instead of from CLI
-    domain_object = object["DomainAvailableResponse"]
+  def self.create_domain_object(name)
+    api_return = APIScrape.get_domain(name)
+    if api_return
+    domain_object = api_return["DomainAvailableResponse"]
     domain_object_instance = DomainSearch::Domain.new(domain_object["Domain"],
         domain_object["Available"], domain_object["Definitive"], domain_object["Price"])
+    else
+      puts "No domain was found based on your search term.  Please try a different search term."
+      DomainSearch::CLI.search_verification
+    end
   end
 
   def self.all

@@ -66,14 +66,23 @@ class DomainSearch::CLI
     end
   end
 
-  def search_verification(input)
+  def domain_search_verification
+    search_input = gets.strip.downcase
+    if search_input.match?(/^[a-zA-Z]{1,20}\.[a-zA-Z]{1,12}$/)
+      search_specific(search_input)
+    else
+      puts "Please enter valid search text (1-20 word characters plus '.' plus 0-12 word characters for top level domain):"
+      domain_search_verification(input)
+    end
+  end
+
+  def search_keyword_verification
     search_input = gets.strip.downcase
     if search_input.match?(/^[a-zA-Z]{1,20}\.?[a-zA-Z]{0,12}$/)
-      search_specific(search_input) if input == "1" || input == "one"
-      search_keyword(search_input) if input == "2" || input == "two"
+      search_keyword(search_input)
     else
       puts "Please enter valid search text (1-20 word characters plus optional '.' plus optional 0-12 for top level domain):"
-      search_verification(input)
+      search_keyword_verification
     end
   end
 
