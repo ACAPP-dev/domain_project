@@ -1,5 +1,3 @@
-require 'httparty'
-
 class APIScrape
 
   def self.get_domain(name)

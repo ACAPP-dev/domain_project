@@ -41,7 +41,7 @@ class DomainSearch::CLI
     if input == "e" || input == "exit"
       DomainSearch::DomainList.all_destroy
       main_menu
-    elsif input.to_i >= 1 && input.to_i < DomainSearch::DomainList.all.length
+    elsif input.to_i >= 1 && input.to_i <= DomainSearch::DomainList.all.length
       display_search_keyword_details(DomainSearch::DomainList.all[input.to_i-1])
     else
       puts "Please enter a valid menu option:"
