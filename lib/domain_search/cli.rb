@@ -33,11 +33,14 @@ class DomainSearch::CLI
     puts <<-DOC
       Choose number of domain to view more detail:
       E or Exit to go back to main menu
+      Q or Quit to exit the program
     DOC
     input = gets.strip.downcase
     if input == "e" || input == "exit"
       DomainSearch::DomainList.all_destroy
       main_menu
+    elsif input == "q" || input == "quit"
+      puts "Goodbye!"
     elsif input.to_i >= 1 && input.to_i <= DomainSearch::DomainList.all.length
       display_search_keyword_details(DomainSearch::DomainList.all[input.to_i-1])
     else
@@ -111,7 +114,7 @@ class DomainSearch::CLI
     printf("%35s %s\n", "Domain Name:", "#{object.name}".colorize(:blue))
     printf("%35s %s\n", "Available for Purchase?", "#{object.available == 'false'?'NO':'YES'}".colorize(:blue))
     printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}".colorize(:blue))
-    printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':'$#{object.price.to_s}'}".colorize(:blue))
+    printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':"$#{object.price.to_s}"}".colorize(:blue))
     #{}puts <<-DOC
     #{}Domain Search Results:
     #{}Domain Name: #{object.name}
