@@ -9,7 +9,7 @@ class DomainSearch::CLI
 
   def main_menu
     puts <<-DOC
-    Menu Options
+                  Menu Options
     1. Search for status of specific domain
     2. Search for available domains based on keyword
     Q or Quit to exit the program
@@ -31,9 +31,10 @@ class DomainSearch::CLI
 
   def second_menu(name=nil)
     puts <<-DOC
+
       Choose number of domain to view more detail:
-      E or Exit to go back to main menu
-      Q or Quit to exit the program
+          E or Exit to go back to main menu
+          Q or Quit to exit the program
     DOC
     input = gets.strip.downcase
     if input == "e" || input == "exit"
@@ -51,6 +52,7 @@ class DomainSearch::CLI
 
   def third_menu
     puts <<-DOC
+
       B or Back to return to the list of domains
       E or Exit to go back to main menu
       Q or Quit to exit the program
@@ -113,8 +115,8 @@ class DomainSearch::CLI
     puts "Domain Search Results:".colorize(:red)
     printf("%35s %s\n", "Domain Name:", "#{object.name}".colorize(:blue))
     printf("%35s %s\n", "Available for Purchase?", "#{object.available == "false"?"NO":"YES"}".colorize(:blue))
-    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}".colorize(:blue))
-    printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':"$#{object.price.to_s}"}".colorize(:blue))
+    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}".colorize(:blue))
+    printf("%35s %s\n", "Price:", "#{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}".colorize(:blue))
     if object.available == "true"
       main_menu
     else
@@ -136,9 +138,9 @@ class DomainSearch::CLI
   def display_search_keyword_details(object)
     puts "Domain Details:"
     printf("%35s %s\n", "Domain Name:", "#{object.name}".colorize(:blue))
-    printf("%35s %s\n", "Available for Purchase?", "#{object.available == 'false'?'NO':'YES'}".colorize(:blue))
-    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}".colorize(:blue))
-    printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':"$#{object.price.to_s}"}".colorize(:blue))
+    printf("%35s %s\n", "Available for Purchase?", "#{object.available == "false"?"NO":"YES"}".colorize(:blue))
+    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}".colorize(:blue))
+    printf("%35s %s\n", "Price:", "#{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}".colorize(:blue))
     if object.available
       puts "This domain is available for purchase!"
       third_menu
