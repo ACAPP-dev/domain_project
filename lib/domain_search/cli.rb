@@ -3,7 +3,7 @@ class DomainSearch::CLI
   attr_accessor :domain
 
   def call
-    puts "Welcome to Domain Search using GoDaddy API!"
+    puts "Welcome to Domain Search using GoDaddy API!".colorize(:green)
     main_menu
   end
 
@@ -107,11 +107,11 @@ class DomainSearch::CLI
   end
 
   def display_search_specific_results(object)
-    puts "Domain Search Results:"
-    printf("%35s %s\n", "Domain Name:", "#{object.name}")
-    printf("%35s %s\n", "Available for Purchase?", "#{object.available == 'false'?'NO':'YES'}")
-    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}")
-    printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':'$#{object.price.to_s}'}")
+    puts "Domain Search Results:".colorize(:red)
+    printf("%35s %s\n", "Domain Name:", "#{object.name}".colorize(:blue))
+    printf("%35s %s\n", "Available for Purchase?", "#{object.available == 'false'?'NO':'YES'}".colorize(:blue))
+    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}".colorize(:blue))
+    printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':'$#{object.price.to_s}'}".colorize(:blue))
     #{}puts <<-DOC
     #{}Domain Search Results:
     #{}Domain Name: #{object.name}
@@ -122,7 +122,7 @@ class DomainSearch::CLI
     if object.available == "true"
       main_menu
     else
-      puts "Your requested domain is not available.  Here is a list of related domains:"
+      puts "Your requested domain is not available.  Here is a list of related domains:".colorize(:red)
       search_keyword(object.name)
     end
   end
@@ -132,24 +132,17 @@ class DomainSearch::CLI
     printf("%-3s %-20s %s\n", "#", "   Domain Name", "Price")
     printf("%-3s %-20s %s\n", "---", "   -------------  ", "--------")
     display_list.each.with_index(1) do |object, index|
-      printf("%-3s %-20s %s\n", "#{index}.", object.name, "#{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}")
+      printf("%-3s %-20s %s\n", "#{index}.", "#{object.name}", "#{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}")
     end
     second_menu
   end
 
   def display_search_keyword_details(object)
     puts "Domain Details:"
-    printf("%35s %s\n", "Domain Name:", "#{object.name}")
-    printf("%35s %s\n", "Available for Purchase?", "#{object.available == 'false'?'NO':'YES'}")
-    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}")
-    printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':"$#{object.price.to_s}"}")
-    #puts <<-DOC
-    #Domain Details:
-    #Domain Name: #{object.name}
-    #Available for Purchase? #{object.available == "false"?"NO":"YES"}
-    #Is GoDaddy Confident of Status? #{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}
-    #Price: #{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}
-    #DOC
+    printf("%35s %s\n", "Domain Name:", "#{object.name}".colorize(:blue))
+    printf("%35s %s\n", "Available for Purchase?", "#{object.available == 'false'?'NO':'YES'}".colorize(:blue))
+    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}".colorize(:blue))
+    printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':"$#{object.price.to_s}"}".colorize(:blue))
     if object.available
       puts "This domain is available for purchase!"
       third_menu

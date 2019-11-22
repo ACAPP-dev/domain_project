@@ -5,6 +5,7 @@ require_relative "./domain_search/domain"
 require_relative "./domain_search/domain_list"
 require 'pry'
 require 'httparty'
+require 'colorize'
 
 module DomainSearch
   class Error < StandardError; end
