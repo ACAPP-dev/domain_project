@@ -112,16 +112,9 @@ class DomainSearch::CLI
   def display_search_specific_results(object)
     puts "Domain Search Results:".colorize(:red)
     printf("%35s %s\n", "Domain Name:", "#{object.name}".colorize(:blue))
-    printf("%35s %s\n", "Available for Purchase?", "#{object.available == 'false'?'NO':'YES'}".colorize(:blue))
+    printf("%35s %s\n", "Available for Purchase?", "#{object.available == "false"?"NO":"YES"}".colorize(:blue))
     printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}".colorize(:blue))
     printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':"$#{object.price.to_s}"}".colorize(:blue))
-    #{}puts <<-DOC
-    #{}Domain Search Results:
-    #{}Domain Name: #{object.name}
-    #{}Available for Purchase? #{object.available == 'false'?'NO':'YES'}
-    #{}Is GoDaddy Confident of Status? #{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}
-    #{}Price: #{object.price == 0?'NO PRICE LISTED':'$#{object.price.to_s}'}
-    #{}DOC
     if object.available == "true"
       main_menu
     else
