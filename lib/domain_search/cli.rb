@@ -107,13 +107,18 @@ class DomainSearch::CLI
   end
 
   def display_search_specific_results(object)
-    puts <<-DOC
-    Domain Search Results:
-    Domain Name: #{object.name}
-    Available for Purchase? #{object.available == 'false'?'NO':'YES'}
-    Is GoDaddy Confident of Status? #{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}
-    Price: #{object.price == 0?'NO PRICE LISTED':'$#{object.price.to_s}'}
-    DOC
+    puts "Domain Search Results:"
+    printf("%35s %s\n", "Domain Name:", "#{object.name}")
+    printf("%35s %s\n", "Available for Purchase?", "#{object.available == 'false'?'NO':'YES'}")
+    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}")
+    printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':'$#{object.price.to_s}'}")
+    #{}puts <<-DOC
+    #{}Domain Search Results:
+    #{}Domain Name: #{object.name}
+    #{}Available for Purchase? #{object.available == 'false'?'NO':'YES'}
+    #{}Is GoDaddy Confident of Status? #{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}
+    #{}Price: #{object.price == 0?'NO PRICE LISTED':'$#{object.price.to_s}'}
+    #{}DOC
     if object.available == "true"
       main_menu
     else
@@ -133,13 +138,18 @@ class DomainSearch::CLI
   end
 
   def display_search_keyword_details(object)
-    puts <<-DOC
-    Domain Details:
-    Domain Name: #{object.name}
-    Available for Purchase? #{object.available == "false"?"NO":"YES"}
-    Is GoDaddy Confident of Status? #{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}
-    Price: #{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}
-    DOC
+    puts "Domain Details:"
+    printf("%35s %s\n", "Domain Name:", "#{object.name}")
+    printf("%35s %s\n", "Available for Purchase?", "#{object.available == 'false'?'NO':'YES'}")
+    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}")
+    printf("%35s %s\n", "Price:", "#{object.price == 0?'NO PRICE LISTED':"$#{object.price.to_s}"}")
+    #puts <<-DOC
+    #Domain Details:
+    #Domain Name: #{object.name}
+    #Available for Purchase? #{object.available == "false"?"NO":"YES"}
+    #Is GoDaddy Confident of Status? #{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}
+    #Price: #{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}
+    #DOC
     if object.available
       puts "This domain is available for purchase!"
       third_menu
