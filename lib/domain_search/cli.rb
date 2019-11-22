@@ -24,7 +24,7 @@ class DomainSearch::CLI
     elsif input == "q" || input == "quit"
       puts "Goodbye!"
     else
-      puts "Please enter a valid menu option:"
+      puts "Please enter a valid menu option:".colorize(:yellow)
       main_menu
     end
   end
@@ -45,7 +45,7 @@ class DomainSearch::CLI
     elsif input.to_i >= 1 && input.to_i <= DomainSearch::DomainList.all.length
       display_search_keyword_details(DomainSearch::DomainList.all[input.to_i-1])
     else
-      puts "Please enter a valid menu option:"
+      puts "Please enter a valid menu option:".colorize(:yellow)
       second_menu(name)
     end
   end
@@ -66,7 +66,7 @@ class DomainSearch::CLI
     elsif input == "q" || input == "quit"
       puts "Goodbye!"
     else
-      puts "Please enter a valid menu option:"
+      puts "Please enter a valid menu option:".colorize(:yellow)
       second_menu
     end
   end
@@ -76,7 +76,7 @@ class DomainSearch::CLI
     if search_input.match?(/^[a-zA-Z]{1,20}\.[a-zA-Z]{1,12}$/)
       search_specific(search_input)
     else
-      puts "Please enter valid search text (1-20 word characters plus '.' plus 0-12 word characters for top level domain):"
+      puts "Please enter valid search text (1-20 word characters plus '.' plus 0-12 word characters for top level domain):".colorize(:yellow)
       domain_search_verification
     end
   end
@@ -86,7 +86,7 @@ class DomainSearch::CLI
     if search_input.match?(/^[a-zA-Z]{1,20}\.?[a-zA-Z]{0,12}$/)
       search_keyword(search_input)
     else
-      puts "Please enter valid search text (1-20 word characters plus optional '.' plus optional 0-12 for top level domain):"
+      puts "Please enter valid search text (1-20 word characters plus optional '.' plus optional 0-12 for top level domain):".colorize(:yellow)
       search_keyword_verification
     end
   end
@@ -94,7 +94,7 @@ class DomainSearch::CLI
   def search_specific(name)
     api_return = APIScrape.get_domain(name)
     if api_return.key?("error")
-      puts "No domain was found based on your search term.  Please try a different search term."
+      puts "No domain was found based on your search term.  Please try a different search term.".colorize(:yellow)
       domain_search_verification
     else
       domain_return = DomainSearch::Domain.create_domain_object(api_return)
@@ -142,10 +142,10 @@ class DomainSearch::CLI
     printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}".colorize(:blue))
     printf("%35s %s\n", "Price:", "#{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}".colorize(:blue))
     if object.available
-      puts "This domain is available for purchase!"
+      puts "This domain is available for purchase!".colorize(:red)
       third_menu
     else
-      puts "Your requested domain is not available.  Maybe you can try another option?"
+      puts "Your requested domain is not available.  Maybe you can try another option?".colorize(:yellow)
       third_menu
     end
   end
