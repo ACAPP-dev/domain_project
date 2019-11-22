@@ -127,10 +127,10 @@ class DomainSearch::CLI
 
   def display_search_keyword_results
     display_list = DomainSearch::DomainList.all
-    printf("%-3s %-20s %s\n", "#", "   Domain Name", "Price")
-    printf("%-3s %-20s %s\n", "---", "   -------------  ", "--------")
+    printf("%-6s %-20s %s\n", "#", "Domain Name", "Price")
+    printf("%-6s %-20s %s\n", "---", "-------------  ", "--------")
     display_list.each.with_index(1) do |object, index|
-      printf("%-3s %-20s %s\n", "#{index}.", "#{object.name}", "#{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}")
+      printf("%-6s %-20s %s\n", "#{index}.", "#{object.name}", "#{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}")
     end
     second_menu
   end
