@@ -21,7 +21,7 @@ class DomainSearch::DomainList
       if current_instance
         current_instance.available = domain["available"]
         current_instance.confidence = domain["definitive"]
-        current_instance.price = domain["price"]
+        current_instance.price = domain["price"].to_f/1000000
       end
     end
     DomainSearch::DomainList.all

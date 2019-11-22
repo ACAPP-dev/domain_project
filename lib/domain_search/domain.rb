@@ -11,7 +11,7 @@ class DomainSearch::Domain
   def self.create_domain_object(api_return_object)
     domain_object = api_return_object["DomainAvailableResponse"]
     domain_object_instance = DomainSearch::Domain.new(domain_object["Domain"],
-        domain_object["Available"], domain_object["Definitive"], domain_object["Price"])
+        domain_object["Available"], domain_object["Definitive"], domain_object["Price"].to_f/1000000)
   end
 
   def self.all

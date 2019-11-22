@@ -16,7 +16,7 @@ class DomainSearch::CLI
     DOC
     input = gets.strip.downcase
     if input == "1" || input == "one"
-      puts "Enter domain for search:"
+      puts "Enter domain name for search (format as: name.tld e.g. 'pets.com'):"
       domain_search_verification
     elsif input == "2" || input == "two"
       puts "Enter keyword for search:"
@@ -110,9 +110,9 @@ class DomainSearch::CLI
     puts <<-DOC
     Domain Search Results:
     Domain Name: #{object.name}
-    Available for Purchase? #{object.available}
-    Is GoDaddy Confident of Status? #{object.confidence}
-    Price: #{object.price}
+    Available for Purchase? #{object.available == "false"?"NO":"YES"}
+    Is GoDaddy Confident of Status? #{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}
+    Price: #{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}
     DOC
     if object.available == "true"
       main_menu
@@ -125,7 +125,7 @@ class DomainSearch::CLI
   def display_search_keyword_results
     display_list = DomainSearch::DomainList.all
     display_list.each.with_index(1) do |object, index|
-      puts "#{index}. #{object.name}      #{object.price}"
+      puts "#{index}. #{object.name}      #{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}"
     end
     second_menu
   end
@@ -134,9 +134,9 @@ class DomainSearch::CLI
     puts <<-DOC
     Domain Details:
     Domain Name: #{object.name}
-    Available for Purchase? #{object.available}
-    Is GoDaddy Confident of Status? #{object.confidence}
-    Price: #{object.price}
+    Available for Purchase? #{object.available == "false"?"NO":"YES"}
+    Is GoDaddy Confident of Status? #{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}
+    Price: #{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}
     DOC
     if object.available
       puts "This domain is available for purchase!"
