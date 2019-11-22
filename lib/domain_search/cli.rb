@@ -110,9 +110,9 @@ class DomainSearch::CLI
     puts <<-DOC
     Domain Search Results:
     Domain Name: #{object.name}
-    Available for Purchase? #{object.available == "false"?"NO":"YES"}
-    Is GoDaddy Confident of Status? #{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}
-    Price: #{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}
+    Available for Purchase? #{object.available == 'false'?'NO':'YES'}
+    Is GoDaddy Confident of Status? #{object.confidence == 'false'?'NO - MAY NOT BE ACCURATE':'YES - APPEARS ACCURATE'}
+    Price: #{object.price == 0?'NO PRICE LISTED':'$#{object.price.to_s}'}
     DOC
     if object.available == "true"
       main_menu
@@ -124,8 +124,10 @@ class DomainSearch::CLI
 
   def display_search_keyword_results
     display_list = DomainSearch::DomainList.all
+    printf("%-3s %-20s %s\n", "#", "   Domain Name", "Price")
+    printf("%-3s %-20s %s\n", "---", "   -------------  ", "--------")
     display_list.each.with_index(1) do |object, index|
-      puts "#{index}. #{object.name}      #{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}"
+      printf("%-3s %-20s %s\n", "#{index}.", object.name, "#{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}")
     end
     second_menu
   end
