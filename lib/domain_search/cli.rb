@@ -117,7 +117,7 @@ class DomainSearch::CLI
     printf("%35s %s\n", "Available for Purchase?", "#{object.available == "false"?"NO":"YES"}".colorize(:blue))
     printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}".colorize(:blue))
     printf("%35s %s\n", "Price:", "#{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}".colorize(:blue))
-    if object.available == "true"
+    if object.available != "false"
       main_menu
     else
       puts "Your requested domain is not available.  Here is a list of related domains:".colorize(:red)
@@ -138,10 +138,10 @@ class DomainSearch::CLI
   def display_search_keyword_details(object)
     puts "Domain Details:"
     printf("%35s %s\n", "Domain Name:", "#{object.name}".colorize(:blue))
-    printf("%35s %s\n", "Available for Purchase?", "#{object.available == "false"?"NO":"YES"}".colorize(:blue))
-    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == "false"?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}".colorize(:blue))
+    printf("%35s %s\n", "Available for Purchase?", "#{object.available == false ?"NO":"YES"}".colorize(:blue))
+    printf("%35s %s\n", "Is GoDaddy Confident of Status?", "#{object.confidence == false ?"NO - MAY NOT BE ACCURATE":"YES - APPEARS ACCURATE"}".colorize(:blue))
     printf("%35s %s\n", "Price:", "#{object.price == 0?"NO PRICE LISTED":"$#{object.price.to_s}"}".colorize(:blue))
-    if object.available
+    if object.available != false
       puts "This domain is available for purchase!".colorize(:red)
       third_menu
     else
