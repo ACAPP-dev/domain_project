@@ -1,8 +1,12 @@
 class APIScrape
 
-  BASEURL = "https://api.ote-godaddy.com/v1/domains"
-  KEY = "3mM44UaChQSbDX_Cz2Z8oBLkQgCGLqvmQHTAN"
-  SECRET = "Jb9VdYd35vbRNeqVyFygk5"
+  BASEURL =   "https://api.godaddy.com/v1/domains"
+  KEY = "AQN3CpkY36Z_3oENG8PQTvSiUCqUsAsL9t"
+  SECRET = "E1AQRFetnqdnfKoxA3asU2"
+
+  TESTBASEURL = "https://api.ote-godaddy.com/v1/domains"
+  TESTKEY = "3mM44UaChQSbDX_Cz2Z8oBLkQgCGLqvmQHTAN"
+  TESTSECRET = "Jb9VdYd35vbRNeqVyFygk5"
 
   def self.get_domain(name)
     url = "#{BASEURL}/available?domain=#{name}"
