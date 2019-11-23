@@ -22,7 +22,7 @@ class DomainSearch::CLI
       puts "Enter keyword for search:"
       search_keyword_verification
     elsif input == "q" || input == "quit"
-      puts "Goodbye!"
+      puts "Goodbye!".colorize(:green)
     else
       puts "Please enter a valid menu option:".colorize(:yellow)
       main_menu
@@ -41,7 +41,7 @@ class DomainSearch::CLI
       DomainSearch::DomainList.all_destroy
       main_menu
     elsif input == "q" || input == "quit"
-      puts "Goodbye!"
+      puts "Goodbye!".colorize(:green)
     elsif input.to_i >= 1 && input.to_i <= DomainSearch::DomainList.all.length
       display_search_keyword_details(DomainSearch::DomainList.all[input.to_i-1])
     else
@@ -64,7 +64,7 @@ class DomainSearch::CLI
       DomainSearch::DomainList.all_destroy
       main_menu
     elsif input == "q" || input == "quit"
-      puts "Goodbye!"
+      puts "Goodbye!".colorize(:green)
     else
       puts "Please enter a valid menu option:".colorize(:yellow)
       second_menu
