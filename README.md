@@ -22,7 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This Gem uses HTTParty for the API interface.  Please install this Gem prior to running the Domain Search Gem. Install using:
+
+  $ gem install httparty
+
+Use the Gem to see examples of how the GoDaddy API works.  Getting the API to work properly was the most challenging part of the project.
 
 ## Development
 
@@ -33,6 +37,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/'acapp909'/domain_project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+Written by ** Andrew Capp ** in conjuction with _Flatiron Academy_ November 2019
 
 ## License
 
