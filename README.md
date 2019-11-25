@@ -1,8 +1,8 @@
-# DomainProject
+# Domain Search Using GoDaddy API
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/domain_project`. To experiment with that code, run `bin/console` for an interactive prompt.
+This Ruby Gem will search GoDaddy.com for website domain availability and pricing using the GoDaddy Developer API.  You can search for a specific domain name or get a list of domains related to any keyword.  If you search for a specific domain and it is not available for purchase, a list of similar domain names will automatically appear.
 
-TODO: Delete this and the text above, and describe your gem
+Note that you cannot make purchases directly from this Gem, but you can purchase available domains directly on the GoDaddy website.
 
 ## Installation
 
