@@ -2,7 +2,7 @@
 
 This Ruby Gem will search GoDaddy.com for website domain availability and pricing using the GoDaddy Developer API.  You can search for a specific domain name or get a list of domains related to any keyword.  If you search for a specific domain and it is not available for purchase, a list of similar domain names will automatically appear.
 
-Note that you cannot make purchases directly from this Gem, but you can purchase available domains directly on the GoDaddy website.
+Note that you cannot make purchases from this Gem, but you can purchase available domains directly on [godaddy.com](https://godaddy.com).
 
 ## Installation
 
@@ -24,9 +24,9 @@ Or install it yourself as:
 
 This Gem uses HTTParty for the API interface.  Please install this Gem prior to running the Domain Search Gem. Install using:
 
-  $ gem install httparty
+    $ gem install httparty
 
-Use the Gem to see examples of how the GoDaddy API works.  Getting the API to work properly was the most challenging part of the project.
+Use the Domain Project Gem to see examples of how the GoDaddy API works.  Getting the API to work properly was the most challenging part of the project.
 
 ## Development
 
@@ -38,7 +38,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/'acapp909'/domain_project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-Written by ** Andrew Capp ** in conjuction with _Flatiron Academy_ November 2019
+Written by **Andrew Capp** in conjunction with _Flatiron Academy_ - November 2019
 
 ## License
 
