@@ -73,10 +73,10 @@ class DomainSearch::CLI
 
   def domain_search_verification
     search_input = gets.strip.downcase
-    if search_input.match?(/^[a-zA-Z]{1,20}\.[a-zA-Z]{1,12}$/)
+    if search_input.match?(/^[a-zA-Z]{1,20}\.[a-zA-Z]{2,12}$/)
       search_specific(search_input)
     else
-      puts "Please enter valid search text (1-20 word characters plus '.' plus 0-12 word characters for top level domain):".colorize(:yellow)
+      puts "Please enter valid search text (1-20 word characters plus '.' plus 2-12 word characters for top level domain):".colorize(:yellow)
       domain_search_verification
     end
   end
