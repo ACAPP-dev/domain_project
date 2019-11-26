@@ -1,6 +1,6 @@
 # Domain Search Using GoDaddy API
 
-This Ruby Gem will search GoDaddy.com for website domain availability and pricing using the GoDaddy Developer API.  You can search for a specific domain name or get a list of domains related to any keyword.  If you search for a specific domain and it is not available for purchase, a list of similar domain names will automatically appear.
+This Ruby Gem will search [godaddy.com](https://godaddy.com) for website domain availability and pricing using the GoDaddy Developer API.  You can search for a specific domain name or get a list of domains related to any keyword.  If you search for a specific domain and it is not available for purchase, a list of similar domain names will automatically appear.
 
 Note that you cannot make purchases from this Gem, but you can purchase available domains directly on [godaddy.com](https://godaddy.com).
 
