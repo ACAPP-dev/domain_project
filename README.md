@@ -6,27 +6,25 @@ Note that you cannot make purchases from this Gem, but you can purchase availabl
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Use:
 
-```ruby
-gem 'domain_project'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install domain_project
-
-## Usage
+    $ git clone https://github.com/ACAPP-dev/domain_project.git to download the code for this project.
 
 This Gem uses HTTParty for the API interface.  Please install this Gem prior to running the Domain Search Gem. Install using:
 
     $ gem install httparty
 
-Use the Domain Project Gem to see examples of how the GoDaddy API works.  Getting the API to work properly was the most challenging part of the project.
+Next be sure to run:
+
+    $ bundle install
+
+Finally you can just type:
+
+    $ bin/domain_search
+
+to start the program.
+
+You can use this Domain Project Gem to see examples of how the GoDaddy API works.  Getting the API to work properly was the most challenging part of the project.
 
 ## Development
 
