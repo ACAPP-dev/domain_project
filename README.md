@@ -6,9 +6,9 @@ Note that you cannot make purchases from this Gem, but you can purchase availabl
 
 ## Installation
 
-Use:
+Download the code for this project using:
 
-    $ git clone https://github.com/ACAPP-dev/domain_project.git to download the code for this project.
+    $ git clone https://github.com/ACAPP-dev/domain_project.git
 
 This Gem uses HTTParty for the API interface.  Please install this Gem prior to running the Domain Search Gem. Install using:
 
@@ -18,11 +18,9 @@ Next be sure to run:
 
     $ bundle install
 
-Finally you can just type:
+Finally, you can start the program using:
 
     $ bin/domain_search
-
-to start the program.
 
 You can use this Domain Project Gem to see examples of how the GoDaddy API works.  Getting the API to work properly was the most challenging part of the project.
 
